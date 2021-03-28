@@ -26,5 +26,12 @@ jobs:
           service_account_key: ${{ env.SA }}
       - run: gcloud auth configure-docker
       - name: Local Build
-        run: docker build -t "gcr.io/$PROJECT_ID/$REPO_NAME:${GITHUB_RUN_NUMBER}" .
-      - run: docker push "gcr.io/$PROJECT_ID/$REPO_NAME:${GITHUB_RUN_NUMBER}"
+        run: docker build -t "asia.gcr.io/$PROJECT_ID/$REPO_NAME:${GITHUB_RUN_NUMBER}" .
+      - run: docker push "asia.gcr.io/$PROJECT_ID/$REPO_NAME:${GITHUB_RUN_NUMBER}"
+      - run: |
+          gcloud run deploy $BRANCH_NAME-$REPO_NAME \
+          --quiet \
+          --region $RUN_REGION \
+          --image asia.gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_RUN_NUMBER \
+          --platform managed \
+          --allow-unauthenticated
