@@ -13,8 +13,6 @@ env:
   SA: ${{ secrets.SA_KEY }}
   PROJECT_ID: laris-co-playground
   RUN_REGION: asia-southeast1
-  REPO_OWNER: ${{ github.event.repository.owner.login }}
-
 
 jobs:
   deploy:
