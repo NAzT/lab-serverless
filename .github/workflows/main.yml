@@ -10,7 +10,7 @@ on:
 env:
   REPO_NAME: ${{ github.event.repository.name }}
   REPO_OWNER: ${{ github.event.repository.owner.login }}
-  SA: ${{ secrets.SA_KEY }}
+  SA: ${{ secrets.SA }}
   PROJECT_ID: laris-co-playground
   RUN_REGION: asia-southeast1
 
